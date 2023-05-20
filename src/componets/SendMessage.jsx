@@ -1,10 +1,10 @@
 import Button from "./Button";
 import Input from "./Input";
 import imgis from "./image/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg";
-import phon from './image/phone-icon-telephone-icon-symbol-for-app-and-messenger-vector.jpg';
-import video from './image/camera_video_icon_176703.png';
-import search from './image/1024px-Search_Icon.svg.png';
-import smaile from './image/smile-icon.png'
+import phon from "./image/phone-icon-telephone-icon-symbol-for-app-and-messenger-vector.jpg";
+import video from "./image/camera_video_icon_176703.png";
+import search from "./image/1024px-Search_Icon.svg.png";
+import smaile from "./image/smile-icon.png";
 
 import {
   deleteNotification,
@@ -14,7 +14,6 @@ import {
 } from "./service/whatsupService";
 import "./styles.css";
 import React, { useState } from "react";
-
 const SendMessager = () => {
   const [messages, setMessages] = useState([]);
   const [formData, setFormData] = useState({
@@ -51,9 +50,11 @@ const SendMessager = () => {
 
   const handleGetMessage = async () => {
     const { data } = await getMessage(formData);
-    console.log(data);
     if (data?.receiptId) {
-      if (data?.body.typeWebhook === "incomingMessageReceived" && data?.body.senderData.chatId === `${formData.mobileNumber}@c.us`) {
+      if (
+        data?.body.typeWebhook === "incomingMessageReceived" &&
+        data?.body.senderData.chatId === `${formData.mobileNumber}@c.us`
+      ) {
         setMessages((msgs) => [
           ...msgs,
           {
@@ -148,101 +149,55 @@ const SendMessager = () => {
             </div>
             <div className="user-instruments">
               <div>
-              <img src={phon} alt="" />
+                <img src={phon} alt="" />
               </div>
               <div>
-              <img src={video } alt="" />
+                <img src={video} alt="" />
               </div>
               <div>
-              <img src={search} alt="" />
+                <img src={search} alt="" />
               </div>
             </div>
           </div>
         </div>
         <div className="whatsapp-messager-output">
-        {messages.map((m) => (
-                <div
-                  style={{
-                    padding: 18 ,
-                    gap:12,
-                    width: "90%",
-                    height: 20,
-                    borderRadius: 18 ,
-                    marginTop: 10,
-                    backgroundColor: m.from ?   " #FFFFFF;" : "#D7F8F4",
-                    textAlign: m.from ? "start" : "end",
-                    fontSize: 14,
-                    fontStyle: 'normal',
-                    fontWeight: 400 ,
-                  }}
-                >
-                  <span>{m.message}</span>
-                </div>
-              ))}
+          {messages.map((m) => (
+            <div
+              style={{
+                padding: 18,
+                gap: 12,
+                width: "90%",
+                height: 20,
+                borderRadius: 18,
+                marginTop: 10,
+                backgroundColor: m.from ? " #FFFFFF;" : "#D7F8F4",
+                textAlign: m.from ? "start" : "end",
+                fontSize: 14,
+                fontStyle: "normal",
+                fontWeight: 400,
+              }}
+            >
+              <span>{m.message}</span>
+            </div>
+          ))}
         </div>
         <div className="whatsapp--messager-input">
           <div className="whatsapp--messager-input-1">
-              <div className="smail">
-              <img src={smaile  } alt="" />
-              </div>
-              <div className="input-text">
-                <div className="input">
+            <div className="smail">
+              <img src={smaile} alt="" />
+            </div>
+            <div className="input-text">
+              <div className="input">
                 <Input name="message" value={message} onChange={onChange} />
-                </div>
-                <div className="button">
-                <Button onClick={onSubmit}>SEND</Button>
-                </div>
-              
-              
-
               </div>
+              <div className="button">
+                <Button onClick={onSubmit}>SEND</Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-    // <div className="whatsapp">
-    //   <div className="whatsapp-titel">
-    //     <div>
-    //       <img src={imgis} alt="" />
-    //     </div>
-    //     <div className="titel">Send Message</div>
-    //   </div>
-    //   <div className="whatsapp-body">
-    //     <div className="section-first">
-    //       <div className="whatsapp-input-number">
-
-    //         />
-    //       </div>
-    //     </div>
-    //     <div className="section-second">
-    //       <div className="whatsapp-messager">
-    //         <div className="whatsapp-output">
-             
-    //         </div>
-    //         <div className="whatsapp-input-messager">
-    //           <div className="whatsapp-input-text">
-                
-    //           </div>
-    //           <div className="button">
-    //             <Button onClick={onSubmit}>SEND</Button>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 export default SendMessager;
