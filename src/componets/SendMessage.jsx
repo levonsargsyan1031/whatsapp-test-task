@@ -18,10 +18,10 @@ import React, { useState } from "react";
 const SendMessager = () => {
   const [messages, setMessages] = useState([]);
   const [formData, setFormData] = useState({
-    mobileNumber: "37498914155",
+    mobileNumber: "",
     message: "",
-    idInstance: "1101822109",
-    apiTokenInstance: "2f50fc025ee341b79412c96a65c439a136c2f85e7c894209b9",
+    idInstance: "",
+    apiTokenInstance: "",
   });
   const { mobileNumber, message, apiTokenInstance, idInstance } = formData;
 
